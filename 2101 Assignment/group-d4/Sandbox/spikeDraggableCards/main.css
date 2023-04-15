@@ -1,0 +1,10 @@
+.card {
+  position:absolute;
+  width: 256px;
+  height: 128px;
+  min-height: 0px;
+}
+.cardColumn {
+  width: 256px;
+  height: 500px;
+}

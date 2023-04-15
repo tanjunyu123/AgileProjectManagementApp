@@ -1,0 +1,122 @@
+<main>
+
+    <head>
+        <!-- MDL library -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-orange.min.css" />
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <!-- style sheet -->
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <style>
+            body {
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+        <div class="mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header mdl-layout__header--scroll">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Title</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" onclick="createTask() ">Create Task</a>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Title</span>
+                <nav class="mdl-navigation">
+
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+
+                    <!-- Dialog box for creating Task-->
+                    <dialog class="mdl-dialog" id="dialogBox">
+                        <h4 class="mdl-dialog__title">Task Details</h4>
+                        <div class="mdl-dialog__content">
+                            <div class="mdl-grid">
+                                <!-- begin inputs -->
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                                        <input class="mdl-textfield__input" type="text" id="newTaskName">
+                                        <label class="mdl-textfield__label" for="newTaskName">Task Name</label>
+                                    </div><br>
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                                        <input class="mdl-textfield__input" type="text" id="newTaskPriority">
+                                        <label class="mdl-textfield__label" for="newTaskPriority">Task Priority</label>
+                                    </div><br>
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                                        <label class="mdl-textfield__label" for="newTaskType">Task Type</label>
+                                        <select class="mdl-textfield__input" id="newTaskType">
+                                            <option value=""></option> <!-- default option should always be empty -->
+                                            <option value="codeImplementation ">Code Implementation</option>
+                                            <option value="debug ">Debug</option>
+                                        </select>
+                                    </div><br>
+                                    <!-- Colored raised button -->
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                        onclick="addTask()">
+                                        Add Task
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                        onclick="cancelDialogBox()">
+                                        Cancel
+                                    </button>
+                                </div>
+                    </dialog>
+
+
+                    <div id="cardsDisplay">
+
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </main>
+        </div>
+         <!-- script for database related variables and functions -->
+         <script src="databaseCode.js"></script>
+         <script type="module" id="firebaseInit">
+             // for some reason, this doesn't work when i put the import code into its own javascript file
+             // so i have to do it here instead
+ 
+ 
+             // Import the functions you need from the SDKs you need
+             import * as importedApp from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"
+             fireApp = importedApp
+             import * as importedDatabase from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js"
+             fireDB = importedDatabase
+             // https://firebase.google.com/docs/web/setup#available-libraries
+             // Initialize Firebase
+             app = fireApp.initializeApp(firebaseConfig);
+             database = fireDB.getDatabase();
+         </script>
+        <script src="js/tasks.js"></script>
+        <script src="js/shared.js"></script>
+    </body>
+
+
+
+
+
+
+
+</main>

@@ -1,0 +1,343 @@
+<!--this is a temporary placeholder for the task information page-->
+<!--this page will probably be deleted after the actual task information page is created-->
+
+<!-- MDL Library -->
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+
+<style>
+    .card {
+        box-sizing: border-box;
+        width: 66%;
+        height: 20%;
+        padding: 1%;
+        margin-left: 8%;
+        margin-top: 3%; 
+        border-radius: 15px;
+    }
+       /* setting background  */
+    body{
+        background-color: aliceblue;
+        overflow: hidden;
+
+    }
+</style>
+
+<body>
+    <!-- --------------------------------------------------------------------------- -->
+    <!-- --------------------------- CONTENT STARTS HERE --------------------------- -->
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!-- button to delete the currently viewed task -->
+    <button class = "mdl-button mdl-js-button mdl-button--icon" style="position:absolute;top:7%;right:6%;cursor: pointer;text-align: center;width: 6%;height: 10%;" onclick="deleteTask()">
+        <i class="material-icons">delete</i></button>
+    </button>
+
+    <!--a single line for the task name -->
+    <div class="container" style="border:0 ;position: absolute;top:5%;left: -3%;height:40%;width:50%">
+        <!-- button to delete the currently viewed task -->
+        <div class="card" style="display:flex;background-color: steelblue; padding: 15px;">
+            <!--label-->
+            <p style="margin-top: -1%;"><strong>Task Name &nbsp;:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <p id="lblTaskName" style="margin-top: -1%;">loading...</p>
+            <!--the value (when editing) (hidden by default)-->
+            <input id="inpTaskName" type="text" hidden="hidden" style="height:0.8cm;width:6cm;margin-left: 3px;margin-top: -5px;">
+        </div>
+        
+
+        <div class="card" style="display:flex;background-color: rgb(124, 174, 216); padding: 15px;">    
+            <p style="margin-top: -1%;"><strong>Task Type &nbsp;&nbsp;&nbsp;:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <p id="lblTaskType" style="margin-top: -1%;">loading...</p>
+            <!--the value (when editing) (hidden by default)-->
+            <!-- <input id="inpTaskType" type="text" hidden="hidden" style="height:0.8cm;width:6cm;margin-left: 4px;margin-top: -5px;"> -->
+            <select id="inpTaskType" hidden="hidden" style="border-radius: 4px;height:0.8cm;width:6cm;margin-top: -5px;">
+                <option value="Code Implementation">Code Implementation</option>
+                <option value="Debug">Debug</option>
+            </select>
+        </div>
+
+    
+        <!--a single line for the task status -->
+        <div class="card" style="display:flex; background-color: rgb(174, 219, 250); padding:15px;" >
+            <!--label-->
+            <p style="margin-top: -1%;"><strong>Task Status &nbsp;:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <p id="lblTaskStatus" style="margin-top: -1%;">loading...</p>
+            <!--the selected value (when editing) (hidden by default)-->
+            <select id="inpTaskStatus" hidden="hidden" style="border-radius: 4px;height:0.8cm;width:6cm;margin-top: -5px;">
+                <option value="Not Started">Not Started</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="container" style="border:0; position: absolute;top: 7%;right:13%;height:35%;width:20%">
+        <!--a single line for the task tag -->
+        <div class="card" style="display:flex; padding: 3%; background-color: rgb(207, 203, 203);width:90%;height:90%">
+            <!--label-->
+            <p><strong>Task Tag &nbsp;:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <p id="lblTaskTag">loading...</p>
+            <!--the selected value (when editing) (hidden by default)-->
+            <select multiple id="inpTaskTag" hidden="hidden" style="margin-left: 22px;width:5cm;"></select>
+        </div>
+    </div>
+    
+    <div class="container" style="border:0; position: absolute; top: 6%; right:25%; height: 40%; width:40%">
+        <!--a single line for the task priority -->
+        <div class="card" style="display:flex; background-color: rgb(150, 146, 146); padding: 1.5%;">
+            <!--label-->
+            <p style="margin-left: 10px;margin-top: 2px;"><strong>Task Priority &nbsp:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <div id="lblTaskPriority"  style="margin-top: 4px;">loading...</div>
+            <!--the selected value (when editing) (hidden by default)-->
+            <select id="inpTaskPriority" hidden="hidden" style="height:0.8cm;width:5cm;margin-left: 3%;">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+    
+        <!--a single line for the task assignee -->
+        <div class="card" style="display:flex; background-color: rgb(150, 146, 146);padding: 1.5%;margin-top: 3.5%;">
+            <!--label-->
+            <p style="margin-left: 10px;margin-top: 2px;"><strong>Task Assignee &nbsp:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <div id="lblTaskAssignee" style="margin-top: 4px;">loading...</div>
+            <!--the value (when editing) (hidden by default)-->
+            <!-- <input id="inpTaskAssignee" type="text" hidden="hidden" style="width:5cm;height: 0.8cm;"> -->
+            <select id="inpTaskAssignee" hidden="hidden" style="border-radius: 4px;height:0.8cm;width:5cm;">
+            </select>
+        </div>
+
+        <!--a single line for the task story points -->
+        <div class="card" style="display:flex; background-color: rgb(150, 146, 146); padding:1.5%;margin-top: 3.5%">
+            <!--label-->
+            <p  style="margin-left: 10px;margin-top: 2px;"><strong>Story Points &nbsp:</strong></p>
+            <!--a small dividing horizontal space between the label and the value-->
+            <div style="min-width: 5px;"></div>
+            <!--the value (when not editing)-->
+            <div id="lblTaskPoints" style="margin-top: 4px;">loading...</div>
+            <!--the value (when editing) (hidden by default)-->
+            <input id="inpTaskPoints" type="text" hidden="hidden" style="margin-left:4%;width:5cm;height: 0.8cm;">
+        </div>
+    
+    </div>
+
+
+    <!--a div for the task description -->
+    <div> <!--unlike the other data, this one isn't inline (since descriptions are usually longer)-->
+        <!--label-->
+        <div class="container">
+
+            <!-- Wide card to display task description -->
+            <!--MDL Library-->
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+            
+            <!-- editing the container class to display Task Description-->
+            <div class="container-header">Task Description</div>
+    
+
+        <!--the value (when not editing)-->
+        <p id="lblTaskDescription" style="max-width: 50%; padding: 10px;">loading...</p>
+        <!--the value (when editing) (hidden by default)-->
+        <input id="inpTaskDescription" type="text" hidden="hidden" style="width: 100%;height: 84%">
+
+        <style>
+            /*style for font of title*/
+                body{
+                    font-family: 'Open Sans', sans-serif;
+                }
+
+            /*style for a container*/
+                .container{
+                    width: 95%; /*setting width for the container*/
+                    height: 35%;
+                    border: 1px solid black; /* Set up Border */
+                    border-radius: 4px; /* Slightly Curve edges */
+                    overflow: auto; /* able to scroll if description is lengthy */
+                    margin-left: 33px;
+                    position: absolute;
+                    bottom: 100;
+                }
+
+
+                .container-header{
+                    color: white;
+                    text-align: center;
+                    font-size: 15px;
+                    font-weight: 600;
+                    border-bottom: 1px solid black;
+                    background-color: rgb(72, 72, 155);
+                    padding: 5px 10px; /* Adding padding to ensure text don't run into the border */
+                }
+
+                .container-main{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 15px 0; /* Adding padding to the top/bottom*/
+                }
+
+            </style>
+    </div>
+    <div class = "button_container">
+        <!-- edit button to enable the edit mode (thus showing the editable versions of inputs)-->
+        <button class = "mdl-button mdl-js-button mdl-button--raised" onclick="edit()" id="btnEdit">
+            edit
+        </button>
+        <!-- edit button to disable the edit mode (thus showing the non-editable versions of inputs)-->
+        <button class = "mdl-button mdl-js-button mdl-button--raised" onclick="confirm()" id="btnConfirm" hidden="hidden">
+            confirm
+        </button>
+        
+        <!-- button to go back to the task board -->
+        <button class = "mdl-button mdl-js-button mdl-button--raised" onclick="back()">
+            back
+        </button>
+        <!-- button to go back to the task board -->
+        <button class = "mdl-button mdl-js-button mdl-button--raised" onclick="showTimeDialog()" id="btnTimeLog" hidden="hidden">
+            time log
+        </button>
+    </div>
+        <!-- making edit, back and confirm buttons into the center -->
+        <style>
+
+            .button_container {
+                position: absolute;
+                bottom: 5%;
+                right: 38%;
+                
+            }
+
+            .mdl-button--raised {
+                background-color: #4c47a8;
+                margin-right: 10px;
+                color: white;
+                outline: none;
+                border: 1px solid #4c47a8;
+                box-shadow: 2px 2px 2px black;
+                width: 3cm;
+                font-size: 13px;
+            }
+
+            button:hover {
+                box-shadow: 2px 2px 3px ;
+            }
+
+            button:active {
+                box-shadow: 1px 1px 3px ;
+            }
+
+        </style>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------- -->
+    <!-- ---------------------------- CONTENT ENDS HERE ---------------------------- -->
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!--dialog box for deleting the viewed task-->
+    <dialog class="mdl-dialog" id="deleteDialog">
+        <!--header-->
+        <h4 style="text-align: center">Confirm Task Deletion?</h4>
+
+        <div class="mdl-dialog__actions" >
+          <!-- begin dialog actions -->
+          <button type="button" class="mdl-button" onclick="deleteDialogConfirm()" style="margin-right:15%">confirm</button>
+          <button type="button" class="mdl-button close" onclick="deleteDialogCancel()">cancel</button>
+          <!-- end dialog actions -->
+        </div>
+    </dialog>
+    
+    <!--dialog box for allocating a team member and adding hours worked-->
+    <dialog class="mdl-dialog" id="timeDialog" style="width: 30%;overflow: visible;">
+        <div class="mdl-layout__header-row" style="background-color: steelblue">
+            <!-- Title -->
+            <span class="mdl-layout-title" style="margin-left: 50px; font:35px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: white;">Time Log</span>
+        </div>
+        <div class="mdl-dialog__content">
+            <hr>
+            <div style="display: inline-block; display:flex;">
+                <p style="font:16px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Assigned to: </p>
+                <div style="width:10px"></div>
+                <select id="inpTaskAssigneeDialog" style="height:20px; width:140px;">
+                </select>
+            </div>
+            <div style="display: inline-block; display:flex;">
+                <p style="font:16px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Total Hours Worked: </p>
+                <div style="width:10px"></div>
+                <p style="font:16px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" id="totalHours">0</p>
+            </div>
+            <div style="height:10px"></div>
+            <div style="display: inline-block; display:flex;">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="margin-top: -10px;">
+                    <input class="mdl-textfield__input" type="text" id="inpHours" placeholder="Input hours here..." style="width:50%;margin-top: 3px; font-size: 15px;">
+                    <label class="mdl-textfield__label" for="inpHours" style="font: 16px Times New Roman;width:80%">Hours to add</label>
+                </div>
+        
+                <!-- adding hours button -->
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin-top:6px; background-color: steelblue;" id="btnHours">
+                    <i class="material-icons" style="font-size: 25px;">add</i>
+                </button>
+            
+            </div>
+            <div style="display: inline-block; display:flex;">
+                <form action="/action_page.php" >
+                    <label for="inpDate" style="font-size: 90%;font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight:bold">Start Date :</label>
+                    <input type="date" id="inpDate" name="inpDate"  style="height: 0.65cm;">
+                </form>
+            </div>
+
+            <div style="height:10px"></div>
+            <div style="display: inline-block; display:flex; justify-content: space-between;">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-top:-8px;width: 40%;background-color: #DCDCDC;color: black;border: none;"
+                    onclick="closeTimeDialog()">
+                    <!-- bold letters -->
+                    Close
+                </button>
+            </div>
+        </div>
+
+
+    </dialog>
+
+    <script src="../backend/config.js"></script>
+    <script src="../backend/databaseCode.js"></script>
+    <script type="module" id="firebaseInit">
+        // Import modules and set them into variables
+        import * as importedApp from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"
+        fireApp = importedApp
+        import * as importedDatabase from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js"
+        fireDB = importedDatabase
+        // Initialize Firebase
+        app = fireApp.initializeApp(firebaseConfig);
+        database = fireDB.getDatabase();
+    </script>
+    <!--- data -->
+    <script src="../backend/shared.js"></script>
+    <!--- main script -->
+    <script defer src="taskInfo.js"></script>
+</body>

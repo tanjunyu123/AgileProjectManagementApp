@@ -1,0 +1,21 @@
+<!--temporary html file to run the temporary javascript file-->
+
+<body>
+    <p>outputs are in the console!</p>
+    <script src="../backend/config.js"></script>
+    <script src="databaseCode.js"></script>
+    <script type="module" id="firebaseInit">
+        // Import modules and set them into variables
+        import * as importedApp from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"
+        fireApp = importedApp
+        import * as importedDatabase from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js"
+        fireDB = importedDatabase
+        // Initialize Firebase
+        app = fireApp.initializeApp(firebaseConfig);
+        database = fireDB.getDatabase();
+    </script>
+    <!--- data -->
+    <script src="shared.js"></script>
+    <!--- main script -->
+    <script defer src="temp.js"></script>
+</body>

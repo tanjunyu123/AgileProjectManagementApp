@@ -1,0 +1,141 @@
+
+
+<html>
+    <head>
+        <!-- MDL library -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-orange.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <style>
+            /* background */
+            body{
+                background-color: aliceblue;
+            }
+            /* style for material icon */
+            .mdl-layout__drawer-button i {
+                
+                margin-top: 10px;
+            }
+            /* style for table */
+            .mdl-js-data-table{
+              margin-top: 2%;
+              margin-bottom: 5%;
+              width: 90%;
+              padding: 5%;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+
+        </style>
+    </head>
+    <body id="body">
+        <!-- MDL LAYOUT: Fixed Header -->
+        <div class="mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row" style="background-color: steelblue">
+                    <!-- Title -->
+                    <span class="mdl-layout-title" style="margin-left:-10px;">TEAM BOARD</span>
+                    <!-- Add spacer, to align title to the left -->
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        
+                          <!-- back button-->
+                          <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: white; margin-right: 18px;" onclick="back()">Back
+                        </button>
+                        
+                    </nav>
+            </div>
+            </header>
+            <!-- Navigation Drawer -->
+            <div class="mdl-layout__drawer" style="background-color: whitesmoke">
+                <div class="container" style="background-color: aliceblue">
+                <span class="mdl-layout-title" style="font: 22px Times New Roman;font-weight: bold;margin: 30px 0 25px 20px;">Navigation Drawer</span>
+                </div>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" style="font-size: 15px;cursor:pointer" onclick="back()"> <i class="material-icons" style="margin:-3px 15px 0 -5px;">home</i>Main Page</a>
+                    <a class="mdl-navigation__link" style="font-size: 15px;cursor:pointer" onclick="taskBoard()"> <i class="material-icons" style="margin:-3px 15px 0 -5px;">task</i>Task Board</a>
+                    <a class="mdl-navigation__link" style="font-size: 15px;cursor:pointer" onclick="sprintBoard()"> <i class="material-icons" style="margin:-3px 15px 0 -5px;">groups</i>Sprint Board</a> 
+                  
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- --------------------------- CONTENT STARTS HERE --------------------------- -->
+                <!-- --------------------------------------------------------------------------- -->
+                <div style="height:20px"></div>
+                
+                <div id="tableDiv" style="overflow: auto;height: 70%;">
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised" style="position: absolute;right: 19%;bottom: 10%;" onclick="addTeamMember()">Create Team Member
+                    <!-- <i class="material-icons" style="font-size: 30px">add</i> -->
+                  </button>
+                <button class="mdl-button mdl-js-button mdl-button--raised" style="position: absolute;right: 6%; bottom: 10%; " onclick="teamDashboard()">Team Dashboard
+                </button>
+                
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- ---------------------------- CONTENT ENDS HERE ---------------------------- -->
+                <!-- --------------------------------------------------------------------------- -->
+            </div>
+            </main>
+                <!--dialog box for adding a team member-->
+                <dialog class="mdl-dialog" id="teamDialog" style="width: 30%;overflow: visible;">
+                    <h4 class="mdl-dialog__title" style="text-align: center;font:35px Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Team Details</h4>
+                    <div style="height:10px"></div>
+                    <div class="mdl-dialog__content">
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="margin-top: -10px;">
+                            <input class="mdl-textfield__input" type="text" id="inpName" placeholder="name..." style="width:105%;margin-top: 5px;">
+                            <label class="mdl-textfield__label" for="inpName" style="font: 16px Times New Roman;width:105%">Team Member Name</label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="inpEmail" placeholder="email..." style="width:105%;margin-top: 5px;">
+                            <label class="mdl-textfield__label" for="inpEmail" style="font: 16px Times New Roman;width:105%">Team Member Email</label>
+                        </div>
+                        <br>
+                    </div>
+                    <div style="height:5px"></div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-top:-8px;margin-left:15px;width: 40%"
+                        onclick="confirmAddTeamMember()">
+                        Add Member
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-top:-8px;margin-left:20px;width: 40%;"
+                        onclick="closeTeamDialog()">
+                        Cancel
+                    </button>
+                    <div style="height:20px"></div>
+                </dialog>
+
+                <!--Dialog container for Analytics-->
+                <dialog id="analyticsDialog" style="width: 30%; text-align: center;">  
+                </dialog>
+                
+        </div>
+
+
+    </body>
+    <script src="../backend/config.js"></script>
+    <script src="../backend/databaseCode.js"></script>
+    <script type="module" id="firebaseInit">
+        // Import modules and set them into variables
+        import * as importedApp from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"
+        fireApp = importedApp
+        import * as importedDatabase from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js"
+        fireDB = importedDatabase
+        // Initialize Firebase
+        app = fireApp.initializeApp(firebaseConfig);
+        database = fireDB.getDatabase();
+    </script>
+    <!--- data -->
+    <script src="../backend/shared.js"></script>
+    <!--- main script -->
+    <script defer src="teamBoard.js"></script>
+
+    
+</html>
+
+
+
